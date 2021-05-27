@@ -1,32 +1,18 @@
 package com.epam.scala_exam.controllers
 
-import com.epam.scala_exam.model._
-import com.epam.scala_exam.repo.FileReaderRepo
-import com.epam.scala_exam.services.ReportService
+import com.epam.scala_exam.services.FilesLoaderService
+import com.epam.scala_exam.utils.HelperUtils._
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 
-import scala.collection.mutable.ListBuffer
-import scala.jdk.CollectionConverters._
 
 @Component
-class ReportFlowControllerImpl(reportService: ReportService, fileReaderRepos: java.util.List[FileReaderRepo]) extends ReportFlowController {
-
-
-
+class ReportFlowControllerImpl(filesLoaderService: FilesLoaderService, @Value("${input_files_path}") val inputFilesPath: String, @Value("${request_files_path}") val requests_file_path: String) extends ReportFlowController {
   override def controlFlow(): Unit = {
-    val listToReturn = new ListBuffer[List[User]]()
-     fileReaderRepos.asScala.toList.foreach(listToReturn+=_.readFilesToMemory())
-    val list = listToReturn.toList.flatten
-
-
-    reportService.validateDataInFiles(list)
-
-
-    //    readFiles()
-    //    convertFilesToObjects()
-    //    validateDataInFiles()
-    //    findRelevantDataAccordingToRequest()
-    //    writeRelevantDataToFile()
+    val inputFilesList = filesLoaderService.readFilesToMemory(inputFilesPath)
+    val requestFilesList = filesLoaderService.readFilesToMemory(requests_file_path)
+    val usersList = filesLoaderService.convertLoadedDataToObjects(inputFilesList)
+    val reportRequestsFilesList = filesLoaderService.convertRequestDataToObjects(requestFilesList)
+    createReport(reportRequestsFilesList.head, usersList)
   }
-
 }

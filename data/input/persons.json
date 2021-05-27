@@ -27,7 +27,7 @@
     "address": "626 Moultrie Street, Blende, Oregon, 5163"
   },
   {
-    "age": 30,
+    "age": 0,
     "name": "Prince Blake",
     "gender": "male",
     "company": "PORTICA",
@@ -36,7 +36,7 @@
     "address": "985 Furman Avenue, Maury, Vermont, 9099"
   },
   {
-    "age": 35,
+    "age": 45,
     "name": "Marisol Faulkner",
     "gender": "female",
     "company": "CODAX",

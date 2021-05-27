@@ -1,14 +1,20 @@
 package com.epam.scala_exam.model
 
 import com.epam.scala_exam.model.GenderEnum.GenderEnum
+import com.epam.scala_exam.model.MaritalStatusEnum.MaritalStatusEnum
 
 
-trait User{
-  val name:String
-  val gender:GenderEnum
-  val age:Int
-  val email:String
-  val phoneNumber:String
+trait User {
+   def getAge:Int
+   def getName:String
+   def getGender:GenderEnum
+   def getEmail:String
+   def getPhoneNumber:String
+   def getMaritalStatus: MaritalStatusEnum
+   def getNumOfChildren: Int
+ }
 
-}
+
+
+
 

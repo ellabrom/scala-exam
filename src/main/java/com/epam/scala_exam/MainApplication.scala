@@ -14,5 +14,6 @@ class MainApplication
 
     private val context: ConfigurableApplicationContext = SpringApplication.run(classOf[MainApplication])
      context.getBean(classOf[ReportFlowControllerImpl]).controlFlow()
-}
+
+  }
 
